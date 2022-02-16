@@ -39,6 +39,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'lib.kingja.switchbutton:switchbutton:1.1.8' // 커스텀 라디오 버튼
-    implementation 'com.github.channgguyen.rsv:1.0.1' // 연속이 아닌 구간을 선택할 수 있는 시크바
+    implementation 'com.github.channguyen:rsv:1.0.1' // 연속이 아닌 구간을 선택할 수 있는 시크바
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha' // 그래프
 }
