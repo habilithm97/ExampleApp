@@ -1,6 +1,5 @@
 package com.example.exampleapp;
 
-import android.graphics.Paint;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +10,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements OnCardItemClickListener{
+public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> implements OnCardItemClickListener{
 
     ArrayList<Card> items = new ArrayList<Card>();
 
@@ -25,16 +23,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @NonNull
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public CardAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View itemView = inflater.inflate(R.layout.recyclerview_item, viewGroup, false);
+        View itemView = inflater.inflate(R.layout.card_item, viewGroup, false);
 
         return new ViewHolder(itemView, this, layoutType); // 뷰홀더 객체를 생성하면서 뷰 객체와 리스너, 레이아웃 타입을 전달하고 그 뷰홀더 객체 반환함
     }
 
     @Override // 생성된 뷰홀더에 데이터를 바인딩해줌, 뷰홀더가 재사용될 때 뷰 객체는 기존 것 그대로 사용하고 데이터만 바꿔줌
-    public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CardAdapter.ViewHolder holder, int position) {
         Card item = items.get(position);
+
         holder.setItem(item);
         holder.setLayoutType(layoutType);
     }
@@ -62,9 +61,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     @Override
-    public void onItemClick(RecyclerViewAdapter.ViewHolder holoer, View view, int position) {
+    public void onItemClick(CardAdapter.ViewHolder holder, View view, int position) {
         if(listener != null) {
-            listener.onItemClick(holoer, view, position);
+            listener.onItemClick(holder, view, position);
         }
     }
 
@@ -80,8 +79,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView contentsTv, contentsTv2, locationTv, locationTv2, dateTv, dateTv2;
 
+        // 뷰홀더 생성자로 전달되는 뷰 객체를 참조함(아이템들은 뷰로 만들어지고, 뷰는 뷰홀더에 담아둠)
         public ViewHolder(@NonNull View itemView, final OnCardItemClickListener listener, int layoutType) {
-            super(itemView);
+            super(itemView); // 이 뷰 객체를 부모 클래스의 변수에 담아둠
 
             layout1 = itemView.findViewById(R.id.layout1);
             layout2 = itemView.findViewById(R.id.layout2);

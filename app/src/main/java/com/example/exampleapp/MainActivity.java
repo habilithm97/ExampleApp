@@ -35,20 +35,15 @@ public class MainActivity extends AppCompatActivity implements onTabItemSelected
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.tab1:
-                                Toast.makeText(getApplicationContext(), "리스트", Toast.LENGTH_SHORT).show();
                                 getSupportFragmentManager().beginTransaction().replace(R.id.container, listFragment).commit();
-
                                 return true;
-                            case R.id.tab2:
-                                Toast.makeText(getApplicationContext(), "작성", Toast.LENGTH_SHORT).show();
-                                getSupportFragmentManager().beginTransaction().replace(R.id.container, writeFragment).commit();
 
+                            case R.id.tab2:
+                                getSupportFragmentManager().beginTransaction().replace(R.id.container, writeFragment).commit();
                                 return true;
 
                             case R.id.tab3:
-                                Toast.makeText(getApplicationContext(), "그래프", Toast.LENGTH_SHORT).show();
                                 getSupportFragmentManager().beginTransaction().replace(R.id.container, graphFragment).commit();
-
                                 return true;
                         }
                         return false;

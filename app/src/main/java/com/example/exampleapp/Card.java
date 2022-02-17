@@ -3,7 +3,7 @@ package com.example.exampleapp;
 public class Card {
 
     int _id;
-    String adress;
+    String address;
     String weather; // 데이터베이스에서 조회한 아이디 값을 넣어둠
     String location_x;
     String location_y;
@@ -12,9 +12,9 @@ public class Card {
     String picture;
     String createDate; // 작성 일자
 
-    public Card(int _id, String adress, String weather, String location_x, String location_y, String contents, String mood, String picture, String createDate) {
+    public Card(int _id, String address, String weather, String location_x, String location_y, String contents, String mood, String picture, String createDate) {
         this._id = _id;
-        this.adress = adress;
+        this.address = address;
         this.weather = weather;
         this.location_x = location_x;
         this.location_y = location_y;
@@ -33,11 +33,11 @@ public class Card {
     }
 
     public String getAdress() {
-        return adress;
+        return address;
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.address = adress;
     }
 
     public String getWeather() {

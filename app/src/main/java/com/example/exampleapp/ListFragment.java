@@ -13,8 +13,8 @@ public class ListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_list, container, false);
-
+        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_list, container, false); // rootView는 최상위 레이아웃, xml 인플레이션을 통해 참조한 객체임
+        // -> 인플레이션 과정이 끝나고 나면 프래그먼트가 하나의 뷰처럼 동작할 수 있게됨
         initUi(rootView);
 
         return rootView;

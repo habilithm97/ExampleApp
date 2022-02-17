@@ -48,14 +48,14 @@
                     android:id="@+id/weatherImg"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:src="@drawable/weather" />
 
                 <ImageView
                     android:id="@+id/pictureImg"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/weatherImg"
                     android:src="@drawable/picture" />
 
@@ -94,6 +94,8 @@
             android:id="@+id/pictureImg2"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:src="@drawable/picture" />
 
         <LinearLayout
@@ -106,6 +108,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="내용"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:textSize="24sp" />
 
             <RelativeLayout
@@ -116,6 +120,7 @@
                     android:id="@+id/moodImg2"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_margin="5dp"
                     android:src="@drawable/smile" />
 
                 <ImageView
@@ -124,7 +129,7 @@
                     android:layout_height="30dp"
                     android:layout_toRightOf="@+id/moodImg2"
                     android:src="@drawable/weather"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_margin="5dp" />
 
                 <TextView
                     android:id="@+id/locationTv2"
