@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements onTabItemSelectedListener , OnRequestListener {
+public class MainActivity extends AppCompatActivity implements onTabItemSelectedListener  {
 
     ListFragment listFragment;
     WriteFragment writeFragment;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements onTabItemSelected
     BottomNavigationView bottomNavigationView;
     
     Location currentLocation; // 현재 위치를 담고 있음
-    GPSListener gpsListener; // 위치 정보를 수신함
+    //GPSListener gpsListener; // 위치 정보를 수신함
 
     int locationCount = 0; // 위치를 한 번 확인한 후에는 위치 요청을 취소할 수 있도록 위치 정보를 확인한 횟수
 
@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements onTabItemSelected
                 });
     }
 
+    /*
     public void onRequest(String command) { // 두 번째 프래그먼트에서 호출됨
         if(command != null) {
             if(command.equals("getCurrentLocation")) {
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements onTabItemSelected
             getCurrentWeather();
             getCurrentAddress();
         }
-    }
+    } */
 
     public void onTabSelected(int position) {
         if(position == 0) {
