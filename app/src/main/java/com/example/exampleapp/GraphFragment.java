@@ -13,6 +13,11 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -36,6 +41,7 @@ public class GraphFragment extends Fragment {
 
         return rootView;
     }
+
     private void initUi(ViewGroup rootView) {
         pieChart = rootView.findViewById(R.id.pieChart);
         pieChart.setUsePercentValues(true); // ??
@@ -55,8 +61,31 @@ public class GraphFragment extends Fragment {
         pieChart.setEntryLabelTextSize(12f); // ??
         setData1(); // 넣을 데이터 설정
 
-
+        // -------------------------------------------------------------------------
         barChart = rootView.findViewById(R.id.barChart);
+        barChart.setDrawValueAboveBar(true); // 속성 아이콘을 바 위에 배치함
+        barChart.getDescription().setEnabled(false); // 그래프 설명 표시하지 않음
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setEnabled(false); // x좌표 표시 안함
+
+        YAxis leftAxis = barChart.getAxisLeft();
+        leftAxis.setLabelCount(6, true); // 6개의 눈금으로 나눔
+        leftAxis.setAxisMinimum(0.0f); // 최소값은 0부터
+        leftAxis.setGranularityEnabled(true); // ?
+        leftAxis.setGranularity(1f); // ?
+
+        YAxis rightAxis = barChart.getAxisRight();
+        rightAxis.setEnabled(false); // 오른쪽 y좌표는 표시하지 않음
+
+        Legend legend2 = barChart.getLegend();
+        legend2.setEnabled(false); // 속성 표시하지 않음
+
+        barChart.animateXY(1500, 1500); // 바가 올라오는 애니메이션 속도
+
+        setData2();
+
+        // -------------------------------------------------------------------------
         lineChart = rootView.findViewById(R.id.lineChart);
     }
 
@@ -89,5 +118,35 @@ public class GraphFragment extends Fragment {
 
         pieChart.setData(data);
         pieChart.invalidate();
+    }
+
+    private void setData2() {
+
+        ArrayList<BarEntry> entries = new ArrayList<>();
+
+        // 바의 위치와 높이, 아이콘 설정
+        entries.add(new BarEntry(1.0f, 20.0f, getResources().getDrawable(R.drawable.smile1_48)));
+        entries.add(new BarEntry(2.0f, 40.0f, getResources().getDrawable(R.drawable.smile2_48)));
+        entries.add(new BarEntry(3.0f, 60.0f, getResources().getDrawable(R.drawable.smile3_48)));
+        entries.add(new BarEntry(4.0f, 30.0f, getResources().getDrawable(R.drawable.smile4_48)));
+        entries.add(new BarEntry(5.0f, 90.0f, getResources().getDrawable(R.drawable.smile5_48)));
+
+        BarDataSet dataSet2 = new BarDataSet(entries, "요일별 기분");
+        dataSet2.setColor(Color.rgb(240, 120, 124)); // ??
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        for (int color : ColorTemplate.JOYFUL_COLORS) {
+            colors.add(color);
+        }
+        dataSet2.setColors(colors);
+        dataSet2.setIconsOffset(new MPPointF(0, -10)); // 속성 아이콘 위치
+
+        BarData data = new BarData(dataSet2);
+        data.setValueTextSize(10f);
+        data.setDrawValues(false); // 바 위에 값 표시하지 않음
+        data.setBarWidth(0.8f); // 바 너비
+
+        barChart.setData(data);
+        barChart.invalidate();
     }
 }
