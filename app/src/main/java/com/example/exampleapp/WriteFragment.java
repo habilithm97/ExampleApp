@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.channguyen.rsv.RangeSliderView;
@@ -20,14 +21,22 @@ public class WriteFragment extends Fragment {
     Context context;
     onTabItemSelectedListener listener;
 
+    TextView dateTv;
+
+    OnRequestListener requestListener;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         this.context = context;
 
-        if(context instanceof onTabItemSelectedListener) { // context가
+        if(context instanceof onTabItemSelectedListener) {
             listener = (onTabItemSelectedListener) context;
+        }
+
+        if(context instanceof OnRequestListener) {
+            requestListener = (OnRequestListener) context;
         }
     }
 
@@ -38,6 +47,7 @@ public class WriteFragment extends Fragment {
         if(context != null) {
             context = null;
             listener = null;
+            requestListener = null;
         }
     }
 
@@ -48,10 +58,16 @@ public class WriteFragment extends Fragment {
 
         initUi(rootView);
 
+        if(requestListener != null)
+        {
+            requestListener.onRequest("getCurrentLocation"); // 현재 위치 요청하기!!!
+        }
         return rootView;
     }
     private void initUi(ViewGroup rootView) { // 인플레이션 후에 xml 레이아웃 안에 들어 있는 위젯이나 레이아웃을 찾아
         // 변수에 할당하는 코드들을 넣기 위해 만들어 둔 것임
+
+        dateTv = rootView.findViewById(R.id.dateTv);
 
         Button saveBtn = rootView.findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -91,5 +107,9 @@ public class WriteFragment extends Fragment {
             }
         });
         sliderView.setInitialIndex(2); // 다섯 개의 기분 중 가운데 기분이 디폴트 값임
+    }
+
+    public void setDateString(String dateString) {
+        dateTv.setText(dateString);
     }
 }

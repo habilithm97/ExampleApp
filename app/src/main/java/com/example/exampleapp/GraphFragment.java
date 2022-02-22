@@ -18,13 +18,20 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class GraphFragment extends Fragment {
 
@@ -86,7 +93,53 @@ public class GraphFragment extends Fragment {
         setData2();
 
         // -------------------------------------------------------------------------
-        lineChart = rootView.findViewById(R.id.lineChart);
+        /*
+        lineChart.getDescription().setEnabled(false);
+        lineChart.setDrawGridBackground(false);
+
+        // 차트 배경색 변경
+        lineChart.setBackgroundColor(Color.WHITE);
+        lineChart.setViewPortOffsets(0, 0, 0, 0);
+
+        // get the legend (only possible after setting data)
+        Legend legend3 = lineChart.getLegend();
+        legend3.setEnabled(false);
+
+        XAxis xAxis3 = lineChart.getXAxis();
+        xAxis3.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
+        xAxis3.setTextSize(10f);
+        xAxis3.setTextColor(Color.WHITE);
+        xAxis3.setDrawAxisLine(false);
+        xAxis3.setDrawGridLines(true);
+        xAxis3.setTextColor(Color.rgb(255, 192, 56));
+        xAxis3.setCenterAxisLabels(true);
+        xAxis3.setGranularity(1f);
+        xAxis3.setValueFormatter(new ValueFormatter() {
+
+            private final SimpleDateFormat mFormat = new SimpleDateFormat("MM-DD", Locale.KOREA);
+
+            @Override
+            public String getFormattedValue(float value) {
+
+                long millis = TimeUnit.HOURS.toMillis((long) value);
+                return mFormat.format(new Date(millis));
+            }
+        });
+
+        YAxis leftAxis3 = lineChart.getAxisLeft();
+        leftAxis3.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
+        leftAxis3.setTextColor(ColorTemplate.getHoloBlue());
+        leftAxis3.setDrawGridLines(true);
+        leftAxis3.setGranularityEnabled(true);
+        leftAxis3.setAxisMinimum(0f);
+        leftAxis3.setAxisMaximum(170f);
+        leftAxis3.setYOffset(-9f);
+        leftAxis3.setTextColor(Color.rgb(255, 192, 56));
+
+        YAxis rightAxis3 = lineChart.getAxisRight();
+        rightAxis3.setEnabled(false);
+
+        setData3(); */
     }
 
     private void setData1() {
@@ -149,4 +202,37 @@ public class GraphFragment extends Fragment {
         barChart.setData(data);
         barChart.invalidate();
     }
+
+    /*
+    private void setData3() {
+
+        ArrayList<Entry> values = new ArrayList<>();
+        values.add(new Entry(24f, 20.0f));
+        values.add(new Entry(48f, 50.0f));
+        values.add(new Entry(72f, 30.0f));
+        values.add(new Entry(96f, 70.0f));
+        values.add(new Entry(120f, 90.0f));
+
+        // create a dataset and give it a type
+        LineDataSet set1 = new LineDataSet(values, "DataSet 1");
+        set1.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set1.setColor(ColorTemplate.getHoloBlue());
+        set1.setValueTextColor(ColorTemplate.getHoloBlue());
+        set1.setLineWidth(1.5f);
+        set1.setDrawCircles(true);
+        set1.setDrawValues(false);
+        set1.setFillAlpha(65);
+        set1.setFillColor(ColorTemplate.getHoloBlue());
+        set1.setHighLightColor(Color.rgb(244, 117, 117));
+        set1.setDrawCircleHole(false);
+
+        // create a data object with the data sets
+        LineData data = new LineData(set1);
+        data.setValueTextColor(Color.WHITE);
+        data.setValueTextSize(9f);
+
+        // set data
+        lineChart.setData(data);
+        lineChart.invalidate();
+    } */
 }
