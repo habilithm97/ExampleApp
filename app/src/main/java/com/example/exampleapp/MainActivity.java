@@ -16,6 +16,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Date;
 
+// 파스텔톤 색상 링크 :  https://coolors.co/d3f8e2-e4c1f9-f694c1-edd5b2-a9def9
+
+/*
+*기상청 날씨를 가져오려면 기상청에서 제공하는 날짜 포맷이 필요함
+ -주소 안에 포함된 gridx와 gridy 파라미터는 날씨 정보를 확인하고 싶은 지역을 나타내는데,
+ -지역을 나타내는 값이 경위도 좌표가 아닌 격자의 번호로 표시되어 있기 때문에
+ -경위도 좌표를 격자 번호로 변환하는 과정이 필요함
+*/
+
 public class MainActivity extends AppCompatActivity implements onTabItemSelectedListener, OnRequestListener{
 
     private static final String TAG = "MainActivity";
@@ -29,9 +38,7 @@ public class MainActivity extends AppCompatActivity implements onTabItemSelected
     Location currentLocation; // 현재 위치를 담고 있음
     GPSListener gpsListener; // 위치 정보를 수신함
 
-    int locationCount = 0; // 위치 정보를 확인한 횟수(위치를 한 번 확인한 후에는 위치 요청을 취소할 수 있도록)
-
-    // https://coolors.co/d3f8e2-e4c1f9-f694c1-edd5b2-a9def9
+    int locationCount = 0; // 위치 정보를 확인한 횟수(위치를 한 번 확인한 후에는 위치 요청을 취소할 수 있도록
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements onTabItemSelected
         getSupportFragmentManager().beginTransaction().replace(R.id.container, listFragment).commit();
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
+        // 하단 탭에 들어 있는 각각의 버튼을 눌렀을 때
+        // onNavigationItemSelected()가 자동으로 호출되므로 그 안에서 메뉴 아이템의 id 값으로 버튼을 구분한 후 그에 맞는 기능을 구현함
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -75,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements onTabItemSelected
         }
     }
 
-    public void getCurrentLocation() { // 현재 위치 확인
+    public void getCurrentLocation() { // 현재 위치 요청
         Date currentDate = new Date(); // 현재 날짜를 가져와서
         String currentDateString = AppConstants.dateFormat3.format(currentDate); // 형식에 맞는 현재 날짜를 변수에 할당한 후에
         if (writeFragment != null) {
@@ -91,11 +100,11 @@ public class MainActivity extends AppCompatActivity implements onTabItemSelected
                 println(message);
 
                 // 현재 위치가 확인되면 호출됨
-                getCurrentWeather();
-                getCurrentAddress();
-            }
+                //getCurrentWeather(); // 현재 위치를 이용해서 날씨 확인
+                //getCurrentAddress(); // 현재 위치를 이용해서 주소 확인
+             }
 
-            gpsListener = new GPSListener(); // 위치 리스너 객체 생성
+            gpsListener = new GPSListener(); // 위치 리스너 객체 생성, 요청된 위치를 수신하기 위함
             // 최소 시간으로는 10초, 최소 거리는 0으로 하여 10초마다 위치 정보를 전달받게됨
             long minTime = 10000;
             float minDistance = 0;
@@ -130,8 +139,8 @@ public class MainActivity extends AppCompatActivity implements onTabItemSelected
             String message = "최근 위치 : 위도 : " + latitude + "\n경도:" + longitude;
             println(message);
 
-            getCurrentWeather();
-            getCurrentAddress();
+            //getCurrentWeather(); // 현재 위치를 이용해서 날씨 확인
+            //getCurrentAddress(); // 현재 위치를 이용해서 주소 확인
         }
     }
 

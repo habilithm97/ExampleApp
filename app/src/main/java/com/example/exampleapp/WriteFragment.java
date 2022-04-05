@@ -18,6 +18,8 @@ import com.google.android.material.tabs.TabLayout;
 
 public class WriteFragment extends Fragment {
 
+    private static final String TAG = "WriteFragment";
+
     Context context;
     onTabItemSelectedListener listener;
 
@@ -52,8 +54,7 @@ public class WriteFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_write, container, false);
 
         initUi(rootView);

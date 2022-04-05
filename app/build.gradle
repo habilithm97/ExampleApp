@@ -44,4 +44,9 @@ dependencies {
     implementation 'lib.kingja.switchbutton:switchbutton:1.1.8' // 커스텀 라디오 버튼
     implementation 'com.github.channguyen:rsv:1.0.1' // 연속이 아닌 구간을 선택할 수 있는 시크바
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha' // 그래프
+
+    implementation 'com.android.volley:volley:1.1.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.stanfy:gson-xml-java:0.1.7'
+    implementation 'com.github.pedroSG94:AutoPermissions:1.0.3'
 }

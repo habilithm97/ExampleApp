@@ -40,8 +40,7 @@ public class GraphFragment extends Fragment {
     LineChart lineChart;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_graph, container, false);
 
         initUi(rootView);
