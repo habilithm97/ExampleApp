@@ -6,10 +6,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,9 @@ public class WriteFragment extends Fragment {
     TextView dateTv;
 
     OnRequestListener requestListener;
+
+    ImageView weatherIcon;
+    int weatherIndex = 0;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -69,6 +74,7 @@ public class WriteFragment extends Fragment {
         // 변수에 할당하는 코드들을 넣기 위해 만들어 둔 것임
 
         dateTv = rootView.findViewById(R.id.dateTv);
+        weatherIcon = rootView.findViewById(R.id.weatherIcon);
 
         Button saveBtn = rootView.findViewById(R.id.saveBtn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +110,6 @@ public class WriteFragment extends Fragment {
         sliderView.setOnSlideListener(new RangeSliderView.OnSlideListener() {
             @Override
             public void onSlide(int index) { // 값이 바뀔 때마다 호출
-
             }
         });
         sliderView.setInitialIndex(2); // 다섯 개의 기분 중 가운데 기분이 디폴트 값임
@@ -112,5 +117,36 @@ public class WriteFragment extends Fragment {
 
     public void setDateString(String dateString) {
         dateTv.setText(dateString);
+    }
+
+    public void setWeather(String data) {
+        AppConstants.println("setWeather called : " + data);
+
+        if (data != null) {
+            if (data.equals("맑음")) {
+                weatherIcon.setImageResource(R.drawable.weather_sun);
+                weatherIndex = 0;
+            } else if (data.equals("구름 조금")) {
+                weatherIcon.setImageResource(R.drawable.weather_mini_cloud);
+                weatherIndex = 1;
+            } else if (data.equals("구름 많음")) {
+                weatherIcon.setImageResource(R.drawable.weather_sun_cloud);
+                weatherIndex = 2;
+            } else if (data.equals("흐림")) {
+                weatherIcon.setImageResource(R.drawable.weather_cloud);
+                weatherIndex = 3;
+            } else if (data.equals("비")) {
+                weatherIcon.setImageResource(R.drawable.weather_rain);
+                weatherIndex = 4;
+            } else if (data.equals("눈/비")) {
+                weatherIcon.setImageResource(R.drawable.weather_snow_rain);
+                weatherIndex = 5;
+            } else if (data.equals("눈")) {
+                weatherIcon.setImageResource(R.drawable.weather_snow);
+                weatherIndex = 6;
+            } else {
+                Log.d(TAG, "알 수 없는 날씨 : " + data);
+            }
+        }
     }
 }

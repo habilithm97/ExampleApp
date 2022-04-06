@@ -1,8 +1,13 @@
 package com.example.exampleapp;
 
+import android.os.Handler;
+import android.util.Log;
+
 import java.text.SimpleDateFormat;
 
 public class AppConstants {
+
+    private static final String TAG = "AppConstants";
 
     public static final int REQ_LOCATION_BY_ADDRESS = 101;
     public static final int REQ_WEATHER_BY_GRID = 102;
@@ -17,10 +22,26 @@ public class AppConstants {
 
     public static final String KEY_URI_PHOTO = "URI_PHOTO";
 
+    public static String DATABASE_NAME = "note.db";
 
-    public static SimpleDateFormat dateFormat = new SimpleDateFormat("YYYYMMddHHmm");
-    public static SimpleDateFormat dateFormat2 = new SimpleDateFormat("YYYY-MM-dd HH시");
-    public static SimpleDateFormat dateFormat3 = new SimpleDateFormat("YYYY년 MM월 dd일");
+    public static final int MODE_INSERT = 1;
+    public static final int MODE_MODIFY = 2;
+
+    public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm");
+    public static SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH시");
+    public static SimpleDateFormat dateFormat3 = new SimpleDateFormat("yyyy년 MM월 dd일");
+    public static SimpleDateFormat dateFormat4 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static SimpleDateFormat dateFormat5 = new SimpleDateFormat("yyyy-MM-dd");
 
 
+    private static Handler handler = new Handler();
+
+    public static void println(final String data) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, data);
+            }
+        });
+    }
 }

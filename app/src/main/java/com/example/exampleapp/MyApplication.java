@@ -68,9 +68,10 @@ public class MyApplication extends Application {
     }
 
     public static interface OnResponseListener { // 리스너
-        public void processResponse(int reqeustCode, int responseCode, String response);
+        public void processResponse(int reqeustCode, int responseCode, String response); // send() 메서드를 호출한 쪽에서 응답 결과를 처리할 수 있도록
     }
 
+    // 요청 객체를 만들어 요청을 처리함
     public static void send(final int requestCode, final int requestMethod, final String url, final Map<String,String> params, final OnResponseListener listener) {
 
         // 문자열을 주고 받기 위한 요청 객체

@@ -14,11 +14,11 @@
         android:padding="5dp" >
 
         <ImageView
-            android:id="@+id/weatherImg"
+            android:id="@+id/weatherIcon"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/weather_sun"
+            android:src="@drawable/weather_snow"
             android:layout_centerVertical="true" />
 
         <TextView
